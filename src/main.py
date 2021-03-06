@@ -105,12 +105,10 @@ def assign_tag(api: sly.Api, task_id, context, state, app_logger):
     api.image.add_tag(image_id, cur_tag_meta.sly_id, tag.value)
 
 
-
-
-
-@app.callback("manual_selected_image_changed")
-def event_next_image(api: sly.Api, task_id, context, state, app_logger):
-    print(json.dumps(context, indent=4))
+# @app.callback("manual_selected_image_changed")
+# def event_next_image(api: sly.Api, task_id, context, state, app_logger):
+#     #print(json.dumps(context, indent=4))
+#     pass
 
 
 def main():
@@ -120,6 +118,7 @@ def main():
 
     state = {}
     state["selectedItem"] = None
+    state["tabName"] = "examples"
 
     app.run(data=data, state=state, initial_events=[{"command": "init"}])
 

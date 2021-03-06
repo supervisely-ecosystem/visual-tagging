@@ -1,29 +1,51 @@
-<div>
+<div id="visual-tagging">
     <div v-if="context.userId !== data.ownerId" style="color: red;">
         You don't have permissions to open this application session.
     </div>
 
-    <div class="ml5 mr10" v-if="context.userId === data.ownerId">
+    <sly-style>
+        #visual-tagging .el-checkbox.small .el-checkbox__inner {
+        height: 14px;
+        width: 14px;
+        }
+
+        #visual-tagging .el-tabs.small .el-tabs__item {
+        font-size: 10px;
+        font-weight: 500;
+        height: 30px;
+        line-height: 30px;
+        }
+    </sly-style>
+
+    <div class="ml5 mr10" v-if="context.userId === data.ownerId" style="margin-left: 2px; margin-right: 2px;">
         <div><b>ACTIONS:</b></div>
         <el-button type="success" size="mini" class="mt5" style="margin-bottom: 15px;"
                    :disabled="false"
-                   :loading="state.processing"
-                   @click="state.processing = true; command('inference')"
+                   @click="command('assign_tag')"
         >
             <i class="zmdi zmdi-fire mr5"></i>Apply model (ctrl+m)
         </el-button>
 
-        <pre>{{state.selectedItem}}</pre>
-        <sly-grid-gallery
-                class="mr5 ml5"
-                v-model="state.selectedItem"
-                :content="data.gallery.content"
-                :options="data.gallery.options"
-        >
-            <template v-slot:card-footer="{ annotation }">
-                <i class="zmdi zmdi-label mr5" :style="{color: annotation.tag.color}"></i>
-                <b>{{annotation.tag.name}}</b><span v-if="annotation.tag.value">:{{annotation.tag.value}}</span>
-            </template>
-        </sly-grid-gallery>
+        <el-tabs class="small" v-model="state.tabName">
+            <el-tab-pane label="EXAMPLES" name="examples">
+                <span slot="label"><i class="zmdi zmdi-collection-image mr5"></i></i>EXAMPLES</span>
+
+                <pre>{{state.selectedItem}}</pre>
+                <sly-grid-gallery
+                        v-model="state.selectedItem"
+                        :content="data.gallery.content"
+                        :options="data.gallery.options"
+                >
+                    <template v-slot:card-footer="{ annotation }">
+                        <i class="zmdi zmdi-label mr5" :style="{color: annotation.tag.color}"></i>
+                        <b>{{annotation.tag.name}}</b><span v-if="annotation.tag.value">:{{annotation.tag.value}}</span>
+                    </template>
+                </sly-grid-gallery>
+            </el-tab-pane>
+<!--            <el-tab-pane label="SETTINGS" name="settings">-->
+<!--            </el-tab-pane>-->
+        </el-tabs>
+
+
     </div>
 </div>
