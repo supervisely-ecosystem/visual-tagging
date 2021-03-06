@@ -1,0 +1,29 @@
+<div>
+    <div v-if="context.userId !== data.ownerId" style="color: red;">
+        You don't have permissions to open this application session.
+    </div>
+
+    <div class="ml5 mr10" v-if="context.userId === data.ownerId">
+        <div><b>ACTIONS:</b></div>
+        <el-button type="success" size="mini" class="mt5" style="margin-bottom: 15px;"
+                   :disabled="false"
+                   :loading="state.processing"
+                   @click="state.processing = true; command('inference')"
+        >
+            <i class="zmdi zmdi-fire mr5"></i>Apply model (ctrl+m)
+        </el-button>
+
+        <pre>{{state.selectedItem}}</pre>
+        <sly-grid-gallery
+                class="mr5 ml5"
+                v-model="state.selectedItem"
+                :content="data.gallery.content"
+                :options="data.gallery.options"
+        >
+            <template v-slot:card-footer="{ annotation }">
+                <i class="zmdi zmdi-label mr5" :style="{color: annotation.tag.color}"></i>
+                <b>{{annotation.tag.name}}</b><span v-if="annotation.tag.value">:{{annotation.tag.value}}</span>
+            </template>
+        </sly-grid-gallery>
+    </div>
+</div>
