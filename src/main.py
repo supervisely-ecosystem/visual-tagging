@@ -117,7 +117,7 @@ def main():
     data["gallery"] = gallery
 
     state = {}
-    state["selectedItem"] = None
+    state["selectedItem"] = 0
     state["tabName"] = "examples"
 
     app.run(data=data, state=state, initial_events=[{"command": "init"}])
@@ -125,5 +125,6 @@ def main():
 
 #@TODO: disable assign button
 #@TODO: cnt columns in grid gallery
+#@TODO: select card to assign tag - value - to string
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
