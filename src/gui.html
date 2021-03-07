@@ -52,20 +52,18 @@
 
         <div class="ml5 mr10" v-if="context.userId === data.ownerId" style="margin-left: 2px; margin-right: 2px;">
             <div class="app-header">
-                <div><b>ACTIONS:</b></div>
-                <el-button type="success" size="mini" class="mt5" style="margin-bottom: 15px;"
-                           :disabled="false"
-                           @click="command('assign_tag')"
-                >
-                    <i class="zmdi zmdi-fire mr5"></i>Tag
+                <div class="ml5"><b>ACTIONS:</b></div>
+                <el-button type="success" size="mini" class="mt5 ml5 mb15"
+                           :disabled="!state.selectedItem"
+                           @click="command('assign_tag')">
+                    <i class="zmdi zmdi-plus-circle mr5"></i>Tag
                 </el-button>
             </div>
 
             <el-tabs id="small_tabs" v-model="state.tabName">
                 <el-tab-pane label="EXAMPLES" name="examples">
                     <span slot="label"><i class="zmdi zmdi-collection-image mr5"></i></i>EXAMPLES</span>
-
-                    <pre>{{state.selectedItem}}</pre>
+<!--                    <pre>{{state.selectedItem}}</pre>-->
                     <sly-grid-gallery
                             v-model="state.selectedItem"
                             :content="data.gallery.content"
