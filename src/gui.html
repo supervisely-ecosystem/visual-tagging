@@ -1,9 +1,12 @@
-<div id="visual-tagging">
+<div>
     <div v-if="context.userId !== data.ownerId" style="color: red;">
         You don't have permissions to open this application session.
     </div>
 
-    <sly-style>
+    <div id="visual-tagging" v-if="context.userId === data.ownerId">
+        <sly-style>
+            #visual-tagging
+
         #visual-tagging .el-checkbox.small .el-checkbox__inner {
         height: 14px;
         width: 14px;
@@ -15,16 +18,42 @@
         height: 30px;
         line-height: 30px;
         }
+
+        #visual-tagging .app-header {
+        <!--        background: white;-->
+        }
+
+        #visual-tagging {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        }
+
+        #visual-tagging .el-tabs {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 42px);
+        }
+        #visual-tagging .el-tabs__content {
+        overflow: scroll;
+        }
     </sly-style>
 
+    </div>
+
+
     <div class="ml5 mr10" v-if="context.userId === data.ownerId" style="margin-left: 2px; margin-right: 2px;">
-        <div><b>ACTIONS:</b></div>
-        <el-button type="success" size="mini" class="mt5" style="margin-bottom: 15px;"
-                   :disabled="false"
-                   @click="command('assign_tag')"
-        >
-            <i class="zmdi zmdi-fire mr5"></i>Apply model (ctrl+m)
-        </el-button>
+        <div class="app-header">
+            <div><b>ACTIONS:</b></div>
+            <el-button type="success" size="mini" class="mt5" style="margin-bottom: 15px;"
+                       :disabled="false"
+                       @click="command('assign_tag')"
+            >
+                <i class="zmdi zmdi-fire mr5"></i>Tag
+            </el-button>
+        </div>
 
         <el-tabs class="small" v-model="state.tabName">
             <el-tab-pane label="EXAMPLES" name="examples">
@@ -42,8 +71,8 @@
                     </template>
                 </sly-grid-gallery>
             </el-tab-pane>
-<!--            <el-tab-pane label="SETTINGS" name="settings">-->
-<!--            </el-tab-pane>-->
+            <!--            <el-tab-pane label="SETTINGS" name="settings">-->
+            <!--            </el-tab-pane>-->
         </el-tabs>
 
 

@@ -126,5 +126,7 @@ def main():
 #@TODO: disable assign button
 #@TODO: cnt columns in grid gallery
 #@TODO: select card to assign tag - value - to string
+#@TODO: упорядочить чтобы один тег был рядом
+#@TODO: tag hotkey
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
