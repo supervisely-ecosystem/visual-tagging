@@ -130,7 +130,6 @@ def main():
 
 #@TODO: cnt columns in grid gallery
 #@TODO: упорядочить чтобы один тег был рядом
-#@TODO: tag hotkey
 #@TODO: image-tags.bulk.add-to-image - update WS
 if __name__ == "__main__":
     sly.main_wrapper("main", main)

@@ -25,7 +25,7 @@
             }
 
             #visual-tagging .app-header {
-            background: white;
+<!--            background: white;-->
             }
 
             #visual-tagging .grid-gallery-views-scene.img-grid-gallery {
@@ -56,30 +56,21 @@
                 <el-button type="success" size="mini" class="mt5 ml5 mb15"
                            :disabled="!state.selectedItem"
                            @click="command('assign_tag')">
-                    <i class="zmdi zmdi-plus-circle mr5"></i>Tag
+                    <i class="zmdi zmdi-plus-circle mr5"></i>Tag (ctrl+t)
                 </el-button>
             </div>
 
-            <el-tabs id="small_tabs" v-model="state.tabName">
-                <el-tab-pane label="EXAMPLES" name="examples">
-                    <span slot="label"><i class="zmdi zmdi-collection-image mr5"></i></i>EXAMPLES</span>
-<!--                    <pre>{{state.selectedItem}}</pre>-->
-                    <sly-grid-gallery
-                            v-model="state.selectedItem"
-                            :content="data.gallery.content"
-                            :options="data.gallery.options"
-                    >
-                        <template v-slot:card-footer="{ annotation }">
-                            <i class="zmdi zmdi-label mr5" :style="{color: annotation.tag.color}"></i>
-                            <b>{{annotation.tag.name}}</b><span
-                                v-if="annotation.tag.value">:{{annotation.tag.value}}</span>
-                        </template>
-                    </sly-grid-gallery>
-                </el-tab-pane>
-                <!--            <el-tab-pane label="SETTINGS" name="settings">-->
-                <!--            </el-tab-pane>-->
-            </el-tabs>
-
+            <sly-grid-gallery
+                    v-model="state.selectedItem"
+                    :content="data.gallery.content"
+                    :options="data.gallery.options"
+            >
+                <template v-slot:card-footer="{ annotation }">
+                    <i class="zmdi zmdi-label mr5" :style="{color: annotation.tag.color}"></i>
+                    <b>{{annotation.tag.name}}</b><span
+                        v-if="annotation.tag.value">:{{annotation.tag.value}}</span>
+                </template>
+            </sly-grid-gallery>
         </div>
 
     </div>

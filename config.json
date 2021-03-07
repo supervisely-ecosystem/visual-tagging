@@ -16,5 +16,8 @@
   "icon_background": "#FFFFFF",
   "context_menu": {
     "target": ["images_project"]
-  }
+  },
+  "hotkeys": [
+      {"hotkey": "ctrl+t", "command": "assign_tag"}
+  ]
 }
