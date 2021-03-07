@@ -3,7 +3,7 @@
         You don't have permissions to open this application session.
     </div>
 
-    <div id="visual-tagging" v-if="context.userId === data.ownerId">
+    <div v-if="context.userId === data.ownerId">
         <sly-style>
             #visual-tagging {
 
@@ -25,7 +25,7 @@
             }
 
             #visual-tagging .app-header {
-<!--            background: white;-->
+            background: white;
             }
 
             #visual-tagging .grid-gallery-views-scene.img-grid-gallery {
@@ -42,35 +42,48 @@
             #visual-tagging .el-tabs {
             display: flex;
             flex-direction: column;
-            height: calc(100% - 42px);
+            height: calc(100% - 60px);
             }
             #visual-tagging .el-tabs__content {
             overflow: scroll;
             }
+
+            #visual-tagging .el-tabs__header {
+            margin-bottom: 0
+            }
         </sly-style>
 
 
-        <div class="ml5 mr10" v-if="context.userId === data.ownerId" style="margin-left: 2px; margin-right: 2px;">
+        <div id="visual-tagging" class="ml5 mr10" v-if="context.userId === data.ownerId" style="margin-left: 2px; margin-right: 2px;">
             <div class="app-header">
                 <div class="ml5"><b>ACTIONS:</b></div>
-                <el-button type="success" size="mini" class="mt5 ml5 mb15"
+                <el-button type="success" size="mini" class="mt5 ml5 mb5"
                            :disabled="!state.selectedItem"
                            @click="command('assign_tag')">
-                    <i class="zmdi zmdi-plus-circle mr5"></i>Tag (ctrl+t)
+                    <i class="zmdi zmdi-plus-circle mr5"></i>Assign Tag (ctrl+t)
                 </el-button>
             </div>
 
-            <sly-grid-gallery
-                    v-model="state.selectedItem"
-                    :content="data.gallery.content"
-                    :options="data.gallery.options"
-            >
-                <template v-slot:card-footer="{ annotation }">
-                    <i class="zmdi zmdi-label mr5" :style="{color: annotation.tag.color}"></i>
-                    <b>{{annotation.tag.name}}</b><span
-                        v-if="annotation.tag.value">:{{annotation.tag.value}}</span>
-                </template>
-            </sly-grid-gallery>
+            <el-tabs id="small_tabs" v-model="state.tabName">
+                <el-tab-pane label="EXAMPLES" name="examples">
+                    <span slot="label"><i class="zmdi zmdi-collection-image mr5"></i></i>EXAMPLES</span>
+<!--                    <pre>{{state.selectedItem}}</pre>-->
+                    <sly-grid-gallery
+                            v-model="state.selectedItem"
+                            :content="data.gallery.content"
+                            :options="data.gallery.options"
+                    >
+                        <template v-slot:card-footer="{ annotation }">
+                            <i class="zmdi zmdi-label mr5" :style="{color: annotation.tag.color}"></i>
+                            <b>{{annotation.tag.name}}</b><span
+                                v-if="annotation.tag.value">:{{annotation.tag.value}}</span>
+                        </template>
+                    </sly-grid-gallery>
+                </el-tab-pane>
+<!--                <el-tab-pane label="SETTINGS" name="settings">-->
+<!--                    <span slot="label"><i class="zmdi zmdi-settings mr5"></i></i>SETTINGS (soon)</span>-->
+<!--                </el-tab-pane>-->
+            </el-tabs>
         </div>
 
     </div>
