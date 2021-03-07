@@ -130,6 +130,6 @@ def main():
 
 #@TODO: cnt columns in grid gallery
 #@TODO: упорядочить чтобы один тег был рядом
-#@TODO: image-tags.bulk.add-to-image - update WS
+#@TODO: image-tags.bulk.add-to-image - update WS + Multiple tags mode - не учитывается в api???
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
