@@ -5,76 +5,84 @@
 
     <div id="visual-tagging" v-if="context.userId === data.ownerId">
         <sly-style>
-            #visual-tagging
+            #visual-tagging {
 
-        #visual-tagging .el-checkbox.small .el-checkbox__inner {
-        height: 14px;
-        width: 14px;
-        }
+            }
+            #small_table.tiny-table table thead th {
+            font-size: 10px;
+            }
+            #small_table.tiny-table table {
+            font-size: 11px;
+            }
+            #small_tabs .el-tabs__item {
+            font-size: 10px;
+            font-weight: 500;
+            height: 30px;
+            line-height: 30px;
+            }
+            #small_tabs .el-tabs__header {
+            background: white;
+            }
 
-        #visual-tagging .el-tabs.small .el-tabs__item {
-        font-size: 10px;
-        font-weight: 500;
-        height: 30px;
-        line-height: 30px;
-        }
+            #visual-tagging .app-header {
+            background: white;
+            }
 
-        #visual-tagging .app-header {
-        <!--        background: white;-->
-        }
+            #visual-tagging .grid-gallery-views-scene.img-grid-gallery {
+            z-index: 0;
+            }
 
-        #visual-tagging {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        }
-
-        #visual-tagging .el-tabs {
-        display: flex;
-        flex-direction: column;
-        height: calc(100% - 42px);
-        }
-        #visual-tagging .el-tabs__content {
-        overflow: scroll;
-        }
-    </sly-style>
-
-    </div>
+            #visual-tagging {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            }
+            #visual-tagging .el-tabs {
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 42px);
+            }
+            #visual-tagging .el-tabs__content {
+            overflow: scroll;
+            }
+        </sly-style>
 
 
-    <div class="ml5 mr10" v-if="context.userId === data.ownerId" style="margin-left: 2px; margin-right: 2px;">
-        <div class="app-header">
-            <div><b>ACTIONS:</b></div>
-            <el-button type="success" size="mini" class="mt5" style="margin-bottom: 15px;"
-                       :disabled="false"
-                       @click="command('assign_tag')"
-            >
-                <i class="zmdi zmdi-fire mr5"></i>Tag
-            </el-button>
-        </div>
-
-        <el-tabs class="small" v-model="state.tabName">
-            <el-tab-pane label="EXAMPLES" name="examples">
-                <span slot="label"><i class="zmdi zmdi-collection-image mr5"></i></i>EXAMPLES</span>
-
-                <pre>{{state.selectedItem}}</pre>
-                <sly-grid-gallery
-                        v-model="state.selectedItem"
-                        :content="data.gallery.content"
-                        :options="data.gallery.options"
+        <div class="ml5 mr10" v-if="context.userId === data.ownerId" style="margin-left: 2px; margin-right: 2px;">
+            <div class="app-header">
+                <div><b>ACTIONS:</b></div>
+                <el-button type="success" size="mini" class="mt5" style="margin-bottom: 15px;"
+                           :disabled="false"
+                           @click="command('assign_tag')"
                 >
-                    <template v-slot:card-footer="{ annotation }">
-                        <i class="zmdi zmdi-label mr5" :style="{color: annotation.tag.color}"></i>
-                        <b>{{annotation.tag.name}}</b><span v-if="annotation.tag.value">:{{annotation.tag.value}}</span>
-                    </template>
-                </sly-grid-gallery>
-            </el-tab-pane>
-            <!--            <el-tab-pane label="SETTINGS" name="settings">-->
-            <!--            </el-tab-pane>-->
-        </el-tabs>
+                    <i class="zmdi zmdi-fire mr5"></i>Tag
+                </el-button>
+            </div>
 
+            <el-tabs id="small_tabs" v-model="state.tabName">
+                <el-tab-pane label="EXAMPLES" name="examples">
+                    <span slot="label"><i class="zmdi zmdi-collection-image mr5"></i></i>EXAMPLES</span>
+
+                    <pre>{{state.selectedItem}}</pre>
+                    <sly-grid-gallery
+                            v-model="state.selectedItem"
+                            :content="data.gallery.content"
+                            :options="data.gallery.options"
+                    >
+                        <template v-slot:card-footer="{ annotation }">
+                            <i class="zmdi zmdi-label mr5" :style="{color: annotation.tag.color}"></i>
+                            <b>{{annotation.tag.name}}</b><span
+                                v-if="annotation.tag.value">:{{annotation.tag.value}}</span>
+                        </template>
+                    </sly-grid-gallery>
+                </el-tab-pane>
+                <!--            <el-tab-pane label="SETTINGS" name="settings">-->
+                <!--            </el-tab-pane>-->
+            </el-tabs>
+
+        </div>
 
     </div>
 </div>
