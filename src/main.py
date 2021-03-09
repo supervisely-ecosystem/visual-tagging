@@ -45,6 +45,7 @@ def init(api: sly.Api, task_id, context, state, app_logger):
 
     same_tags = defaultdict(list)
 
+    progress = sly.Progress("Initializing image examples", project_info.items_count, need_info_log=True)
     for dataset in api.dataset.get_list(project_id):
         images_infos = api.image.get_list(dataset.id)
         for batch in sly.batched(images_infos):
@@ -63,6 +64,7 @@ def init(api: sly.Api, task_id, context, state, app_logger):
                         },
                         "_tag": tag
                     })
+            progress.iters_done_report(len(batch))
 
     index = 0
     for key, cards in same_tags.items():
@@ -76,6 +78,8 @@ def init(api: sly.Api, task_id, context, state, app_logger):
     api.task.set_field(task_id, "data.gallery", gallery)
     if len(gallery2tag) > 0:
         api.task.set_field(task_id, "state.selectedItem", '0')
+
+    sly.logger.info("Initialization finished")
 
 
 @app.callback("assign_tag")
