@@ -36,11 +36,14 @@ Assign tag using visual examples (one or more) in labeling interface.
 
 <img src="https://i.imgur.com/jfB9DzT.png" width="600"/>
 
-4. Open any images project in labeling interface and open app session
+4. Open any images project in labeling interface and open app session. You can use `Cats Quiz` project as a toy example for tests.
 
-<img src="https://i.imgur.com/y1IeZ54.png" width="450"/>
+<img  data-key="sly-module-link" data-module-slug="supervisely-ecosystem/cats-quiz" src="https://i.imgur.com/tt02wog.png" width="300"/>
 
+5. Do not forget to stop the running session (on `Team Apps` page) once you finished with it. Go to Team 
 
-**Notice 1**: To use app in labeling job, it is needed to run separate app session for every user. Also it is needed to enable `multi tags mode` in the settings of working project  
+**Notice**: To use app in labeling job, it is needed to run separate app session for every user. Also, it is needed to enable `Multiple tags mode` in the settings of working project.
 
-4. What until task finished. Masks will be added to existing project on top of existing annotations. If image doesn't have alpha channel, app will print corresponding warning to task log.
+<a data-key="sly-embeded-video-link" href="https://youtu.be/NJhNgIn1Wso" data-video-code="NJhNgIn1Wso">
+    <img src="https://i.imgur.com/MW5CWLM.png" alt="SLY_EMBEDED_VIDEO_LINK"  style="max-width:50%;">
+</a>
