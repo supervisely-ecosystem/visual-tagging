@@ -1,5 +1,4 @@
 import os
-import json
 from collections import defaultdict
 import supervisely_lib as sly
 
@@ -55,7 +54,6 @@ def init(api: sly.Api, task_id, context, state, app_logger):
             for img_info, ann in zip(batch, anns):
                 for tag in ann.img_tags:
                     tag: sly.Tag
-                    # gallery["content"]["annotations"][str(index)] =
                     same_tags[tag.get_compact_str()].append( {
                         "url": img_info.full_storage_url,
                         "figures": [],
@@ -65,9 +63,6 @@ def init(api: sly.Api, task_id, context, state, app_logger):
                         },
                         "_tag": tag
                     })
-                    #gallery["content"]["layout"][index % CNT_GRID_COLUMNS].append(str(index))
-                    #gallery2tag[str(index)] = tag
-                    #index += 1
 
     index = 0
     for key, cards in same_tags.items():
@@ -77,7 +72,6 @@ def init(api: sly.Api, task_id, context, state, app_logger):
             gallery["content"]["layout"][index % CNT_GRID_COLUMNS].append(str(index))
             gallery2tag[str(index)] = tag
             index += 1
-
 
     api.task.set_field(task_id, "data.gallery", gallery)
     if len(gallery2tag) > 0:
@@ -122,12 +116,6 @@ def assign_tag(api: sly.Api, task_id, context, state, app_logger):
         return
 
     api.image.add_tag(cur_image_id, cur_tag_meta.sly_id, tag.value)
-
-
-# @app.callback("manual_selected_image_changed")
-# def event_next_image(api: sly.Api, task_id, context, state, app_logger):
-#     #print(json.dumps(context, indent=4))
-#     pass
 
 
 def main():
