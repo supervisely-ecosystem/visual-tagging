@@ -18,6 +18,6 @@
     "target": ["images_project"]
   },
   "hotkeys": [
-      {"hotkey": "ctrl+t", "command": "assign_tag"}
+      {"hotkey": "alt+t", "command": "assign_tag"}
   ]
 }
