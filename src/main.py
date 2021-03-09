@@ -1,5 +1,6 @@
 import os
 import json
+from collections import defaultdict
 import supervisely_lib as sly
 
 
@@ -43,7 +44,8 @@ def init(api: sly.Api, task_id, context, state, app_logger):
     project_info = api.project.get_info_by_id(project_id)
     meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
 
-    index = 0
+    same_tags = defaultdict(list)
+
     for dataset in api.dataset.get_list(project_id):
         images_infos = api.image.get_list(dataset.id)
         for batch in sly.batched(images_infos):
@@ -53,17 +55,29 @@ def init(api: sly.Api, task_id, context, state, app_logger):
             for img_info, ann in zip(batch, anns):
                 for tag in ann.img_tags:
                     tag: sly.Tag
-                    gallery["content"]["annotations"][str(index)] = {
+                    # gallery["content"]["annotations"][str(index)] =
+                    same_tags[tag.get_compact_str()].append( {
                         "url": img_info.full_storage_url,
                         "figures": [],
                         "tag": {
                             **tag.to_json(),
                             "color": sly.color.rgb2hex(meta.get_tag_meta(tag.name).color)
-                        }
-                    }
-                    gallery["content"]["layout"][index % CNT_GRID_COLUMNS].append(str(index))
-                    gallery2tag[str(index)] = tag
-                    index += 1
+                        },
+                        "_tag": tag
+                    })
+                    #gallery["content"]["layout"][index % CNT_GRID_COLUMNS].append(str(index))
+                    #gallery2tag[str(index)] = tag
+                    #index += 1
+
+    index = 0
+    for key, cards in same_tags.items():
+        for card in cards:
+            tag = card.pop('_tag', None)
+            gallery["content"]["annotations"][str(index)] = card
+            gallery["content"]["layout"][index % CNT_GRID_COLUMNS].append(str(index))
+            gallery2tag[str(index)] = tag
+            index += 1
+
 
     api.task.set_field(task_id, "data.gallery", gallery)
     if len(gallery2tag) > 0:
