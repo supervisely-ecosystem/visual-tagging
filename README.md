@@ -28,7 +28,10 @@ Assign tag using visual examples (one or more) in labeling interface.
 # How To Use
 
 1. Add app from ecosystem to your team
-2. Prepare input project. Assign tags to images. They will be used as examples. Tag may have several examples. Here is the [example project](https://ecosystem.supervise.ly/projects/top-10-cat-breeds) from ecosystem.
+
+<img  data-key="sly-module-link" data-module-slug="supervisely-ecosystem/visual-tagging" src="https://i.imgur.com/nHbmJXa.png" width="300"/>   
+
+2. Prepare input project. Assign tags to images. They will be used as examples. Tag may have several examples. You can try ready to use example project`top-10-cat-breeds` from ecosystem.
    
 <img  data-key="sly-module-link" data-module-slug="supervisely-ecosystem/top-10-cat-breeds" src="https://i.imgur.com/atFsWGd.png" width="300"/>
 
@@ -36,7 +39,7 @@ Assign tag using visual examples (one or more) in labeling interface.
 
 <img src="https://i.imgur.com/jfB9DzT.png" width="600"/>
 
-4. Open any images project in labeling interface and open app session. You can use `Cats Quiz` project as a toy example for tests.
+4. Open any project with images in labeling interface and open app session. You can use `Cats Quiz` project as a toy example for tests.
 
 <img  data-key="sly-module-link" data-module-slug="supervisely-ecosystem/cats-quiz" src="https://i.imgur.com/tt02wog.png" width="300"/>
 
