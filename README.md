@@ -27,6 +27,11 @@ Assign tag using visual examples (one or more) in labeling interface.
 
 # How To Use
 
+<a data-key="sly-embeded-video-link" href="https://youtu.be/q8Y4yBU3uw0" data-video-code="q8Y4yBU3uw0">
+    <img src="https://i.imgur.com/4UTQ0Ib.png" alt="SLY_EMBEDED_VIDEO_LINK">
+</a>
+
+
 1. Add app from ecosystem to your team
 
 <img  data-key="sly-module-link" data-module-slug="supervisely-ecosystem/visual-tagging" src="https://i.imgur.com/nHbmJXa.png" width="300"/>   
