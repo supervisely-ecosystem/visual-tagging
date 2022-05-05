@@ -10,13 +10,21 @@
   "gui_template": "src/gui.html",
   "task_location": "application_sessions",
   "isolate": true,
-  "integrated_into": ["image_annotation_tool"],
+  "integrated_into": [
+    "image_annotation_tool"
+  ],
   "icon": "https://img.icons8.com/color/100/000000/medium-icons.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
-    "target": ["images_project"]
+    "target": [
+      "images_project"
+    ]
   },
   "hotkeys": [
-      {"hotkey": "alt+t", "command": "assign_tag"}
-  ]
+    {
+      "hotkey": "alt+t",
+      "command": "assign_tag"
+    }
+  ],
+  "poster": "https://i.imgur.com/LwvrJKf.png"
 }
