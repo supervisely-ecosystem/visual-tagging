@@ -1,11 +1,10 @@
 import os
 from collections import defaultdict
-import supervisely_lib as sly
+import supervisely as sly
+from supervisely.app.v1.app_service import AppService
 
-
-app: sly.AppService = sly.AppService()
+app: AppService = AppService()
 api = app.public_api
-
 
 owner_id = int(os.environ['context.userId'])
 team_id = int(os.environ['context.teamId'])
@@ -55,8 +54,8 @@ def init(api: sly.Api, task_id, context, state, app_logger):
             for img_info, ann in zip(batch, anns):
                 for tag in ann.img_tags:
                     tag: sly.Tag
-                    same_tags[tag.get_compact_str()].append( {
-                        "url": img_info.full_storage_url,
+                    same_tags[tag.get_compact_str()].append({
+                        "url": img_info.path_original,
                         "figures": [],
                         "tag": {
                             **tag.to_json(),
@@ -108,7 +107,7 @@ def assign_tag(api: sly.Api, task_id, context, state, app_logger):
     cur_tag_meta: sly.TagMeta = cur_meta.get_tag_meta(tag.name)
     tag_meta: sly.TagMeta = meta.get_tag_meta(tag.name)
     if cur_tag_meta is None:
-        if tag_meta is None: # impossible
+        if tag_meta is None:  # impossible
             raise RuntimeError(f"Tag '{tag.name}' not found in original project")
         cur_meta = cur_meta.add_tag_meta(tag_meta)
         api.project.update_meta(cur_project_id, cur_meta.to_json())
@@ -134,6 +133,6 @@ def main():
     app.run(data=data, state=state, initial_events=[{"command": "init"}])
 
 
-#@TODO: cnt columns in grid gallery
+# @TODO: cnt columns in grid gallery
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
