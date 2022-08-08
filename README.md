@@ -1,5 +1,5 @@
 <div align="center" markdown>
-<img src="https://i.imgur.com/LwvrJKf.png"/>
+<img src="https://user-images.githubusercontent.com/48245050/182596826-d09bdcba-6021-4b93-a5f5-0b77804a3669.png"/>
 
 # Visual Tagging
 
