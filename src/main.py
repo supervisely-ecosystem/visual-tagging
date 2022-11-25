@@ -79,12 +79,12 @@ def assign_tag(api: sly.Api, task_id, context, state, app_logger):
         sly.logger.warn("Image is not defined in context, contact support")
         return
 
-    img_tags = sly.Annotation.from_json(
+    cur_img_tags = sly.Annotation.from_json(
         data=api.annotation.download_json(image_id=cur_image_id),
         project_meta=g.META,
     ).img_tags
-    cur_image_tags_names = [tag.name for tag in img_tags]
-    if tag.name in cur_image_tags_names:
+    cur_img_tags_names = [tag.name for tag in cur_img_tags]
+    if tag.name in cur_img_tags_names:
         g.app.show_modal_window(
             message=f"Tag: {tag.name} already assigned to this image", level="info"
         )
