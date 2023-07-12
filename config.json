@@ -15,7 +15,7 @@
   "integrated_into": [
     "image_annotation_tool"
   ],
-  "icon": "https://img.icons8.com/color/100/000000/medium-icons.png",
+  "icon": "media/icon.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
     "target": [
