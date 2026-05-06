@@ -6,8 +6,8 @@
         "labeling"
     ],
     "description": "Assign tags to images using example images",
-    "docker_image": "supervisely/labeling:6.73.506",
-    "instance_version": "6.15.40",
+    "docker_image": "supervisely/labeling:6.73.564",
+    "instance_version": "6.15.60",
     "main_script": "src/main.py",
     "gui_template": "src/gui.html",
     "task_location": "application_sessions",
